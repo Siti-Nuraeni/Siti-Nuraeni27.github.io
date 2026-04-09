@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Siti Nuraeni — Instructional Design Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0F2044;
+      --teal: #1A7FA0;
+      --gold: #C49A3C;
+      --cream: #F8F5EE;
+      --sand: #EDE7D9;
+      --text: #1C1C1E;
+      --muted: #5A5A72;
+      --white: #FFFFFF;
+      --card-bg: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(15,32,68,0.97);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--white); font-size: 1.25rem; font-weight: 600;
+      letter-spacing: 0.05em; text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75); text-decoration: none;
+      font-size: 0.85rem; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      display: flex; align-items: center;
+      padding: 8rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -20%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(26,127,160,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: -10%; left: 20%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(196,154,60,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-content { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+    .hero-eyebrow {
+      font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block;
+      width: 40px; height: 1px; background: var(--gold);
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 300; color: var(--white); line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    .hero h1 em {
+      font-style: italic; color: var(--teal);
+    }
+    .hero-sub {
+      font-size: 1.1rem; color: rgba(255,255,255,0.65);
+      max-width: 540px; margin: 1.5rem 0 2.5rem;
+      line-height: 1.7;
+    }
+    .hero-stats {
+      display: flex; gap: 3rem; margin-bottom: 3rem; flex-wrap: wrap;
+    }
+    .stat-item { }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 600; color: var(--white);
+      line-height: 1;
+    }
+    .stat-label { font-size: 0.75rem; color: rgba(255,255,255,0.5); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 0.25rem; }
+    .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--navy);
+      padding: 0.85rem 2rem; border-radius: 2px;
+      text-decoration: none; font-weight: 500; font-size: 0.9rem;
+      letter-spacing: 0.05em; transition: all 0.2s;
+    }
+    .btn-primary:hover { background: #d4aa52; transform: translateY(-2px); }
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,0.3); color: var(--white);
+      padding: 0.85rem 2rem; border-radius: 2px;
+      text-decoration: none; font-size: 0.9rem;
+      letter-spacing: 0.05em; transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); }
+
+    /* SECTIONS */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .section-label::before {
+      content: ''; display: block;
+      width: 30px; height: 1px; background: var(--gold);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400; color: var(--navy);
+      line-height: 1.2; margin-bottom: 1.5rem;
+    }
+    .section-intro {
+      font-size: 1rem; color: var(--muted); max-width: 600px; line-height: 1.8;
+    }
+
+    /* ABOUT */
+    #about { background: var(--white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start; margin-top: 3rem;
+    }
+    .about-text p { color: var(--muted); line-height: 1.85; margin-bottom: 1.25rem; font-size: 0.97rem; }
+    .about-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+    .badge {
+      background: var(--sand); color: var(--navy);
+      padding: 0.35rem 0.9rem; border-radius: 20px;
+      font-size: 0.8rem; font-weight: 500;
+    }
+    .about-highlights { }
+    .highlight-card {
+      border-left: 3px solid var(--gold);
+      padding: 1.25rem 1.5rem; margin-bottom: 1.5rem;
+      background: var(--cream); border-radius: 0 6px 6px 0;
+    }
+    .highlight-card h4 { font-size: 0.85rem; font-weight: 500; color: var(--navy); margin-bottom: 0.35rem; }
+    .highlight-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* SKILLS */
+    #skills { background: var(--cream); }
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .skill-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 8px; padding: 1.75rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .skill-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+    .skill-icon { font-size: 2rem; margin-bottom: 1rem; }
+    .skill-card h3 { font-size: 1rem; font-weight: 500; color: var(--navy); margin-bottom: 0.75rem; }
+    .skill-card ul { list-style: none; }
+    .skill-card li {
+      font-size: 0.82rem; color: var(--muted);
+      padding: 0.3rem 0; border-bottom: 1px solid var(--sand);
+    }
+    .skill-card li:last-child { border: none; }
+
+    /* PROJECTS */
+    #projects { background: var(--white); }
+    .projects-grid {
+      display: grid; gap: 2rem; margin-top: 3rem;
+    }
+    .project-card {
+      display: grid; grid-template-columns: auto 1fr;
+      gap: 2rem; padding: 2rem;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 8px; background: var(--cream);
+      transition: box-shadow 0.2s;
+      align-items: start;
+    }
+    .project-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,0.07); }
+    .project-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem; font-weight: 300; color: var(--gold);
+      line-height: 1; opacity: 0.6; min-width: 60px;
+    }
+    .project-content h3 {
+      font-size: 1.1rem; font-weight: 500; color: var(--navy); margin-bottom: 0.75rem;
+    }
+    .project-content p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag {
+      background: var(--navy); color: rgba(255,255,255,0.8);
+      padding: 0.2rem 0.7rem; border-radius: 3px; font-size: 0.72rem; letter-spacing: 0.05em;
+    }
+    .project-link {
+      display: inline-block; margin-top: 0.75rem;
+      font-size: 0.8rem; color: var(--teal); text-decoration: none;
+      font-weight: 500; letter-spacing: 0.05em;
+    }
+    .project-link:hover { text-decoration: underline; }
+
+    /* EXPERIENCE */
+    #experience { background: var(--navy); }
+    #experience .section-title { color: var(--white); }
+    #experience .section-intro { color: rgba(255,255,255,0.55); }
+    .timeline { margin-top: 3rem; position: relative; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: rgba(255,255,255,0.1);
+    }
+    .timeline-item {
+      padding: 0 0 3rem 2.5rem; position: relative;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute; left: -4px; top: 6px;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--gold);
+    }
+    .timeline-date { font-size: 0.75rem; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .timeline-role { font-size: 1.05rem; font-weight: 500; color: var(--white); margin-bottom: 0.2rem; }
+    .timeline-org { font-size: 0.85rem; color: rgba(255,255,255,0.45); margin-bottom: 0.75rem; }
+    .timeline-points { list-style: none; }
+    .timeline-points li {
+      font-size: 0.85rem; color: rgba(255,255,255,0.6);
+      padding: 0.3rem 0 0.3rem 1.25rem; position: relative; line-height: 1.6;
+    }
+    .timeline-points li::before {
+      content: '—'; position: absolute; left: 0; color: var(--teal); font-size: 0.7rem;
+    }
+
+    /* AWARDS */
+    #awards { background: var(--cream); }
+    .awards-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .award-card {
+      text-align: center; padding: 2rem 1.5rem;
+      background: var(--white); border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .award-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .award-card h4 { font-size: 0.95rem; font-weight: 500; color: var(--navy); margin-bottom: 0.4rem; }
+    .award-card p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+    /* CONTACT */
+    #contact { background: var(--navy); text-align: center; }
+    #contact .section-title { color: var(--white); }
+    #contact .section-intro { color: rgba(255,255,255,0.55); margin: 0 auto 3rem; }
+    #contact .section-label { justify-content: center; }
+    #contact .section-label::before { display: none; }
+    .contact-links {
+      display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem;
+    }
+    .contact-item {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.9rem 1.75rem;
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 4px;
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 0.9rem; transition: all 0.2s;
+    }
+    .contact-item:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* FOOTER */
+    footer {
+      background: #07142E; text-align: center;
+      padding: 1.5rem; color: rgba(255,255,255,0.3); font-size: 0.8rem;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .project-card { grid-template-columns: 1fr; gap: 1rem; }
+      .project-num { font-size: 2rem; }
+      .hero-stats { gap: 2rem; }
+    }
+
+    /* ANIMATIONS */
+    .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Siti Nuraeni</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Instructional Design & Learning QA Specialist</div>
+    <h1>Siti<br><em>Nuraeni</em></h1>
+    <p class="hero-sub">
+      Transforming complex ideas into clear, engaging, and impactful learning experiences — from national government programs to international e-learning platforms.
+    </p>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">Years in Education</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Courses Designed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">1000+</div>
+        <div class="stat-label">Learners Reached</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">95%</div>
+        <div class="stat-label">Satisfaction Rate</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">Background</div>
+    <h2 class="section-title">Educator at Heart,<br>Designer by Practice</h2>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>I'm Siti Nuraeni — an instructional designer and learning QA specialist with roots in English education and language teaching. My career began in the classroom as an English teacher and IELTS tutor, where I discovered my passion for helping learners grow in confidence and capability.</p>
+        <p>Over time, I transitioned into instructional design and quality assurance, working with government ministries, international universities, and global training organizations. Today I bring a learner-centered approach to every project — combining pedagogy, technology, and thoughtful design to create experiences that don't just inform, but empower.</p>
+        <p>Currently based in Jakarta, I'm working with The KPI Institute as a Senior Instructional Design QA Specialist, designing and reviewing e-learning content for global audiences.</p>
+        <div class="about-badges">
+          <span class="badge">M.Ed. Penn State</span>
+          <span class="badge">CTP Certified</span>
+          <span class="badge">Fulbright Scholar</span>
+          <span class="badge">LPDP Scholar</span>
+          <span class="badge">Jakarta, Indonesia</span>
+        </div>
+      </div>
+      <div class="about-highlights fade-in">
+        <div class="highlight-card">
+          <h4>🎓 Education</h4>
+          <p>Master of Education in Curriculum & Instruction — The Pennsylvania State University<br>
+          B.S. in English Teaching & Education — UIN Syarif Hidayatullah Jakarta</p>
+        </div>
+        <div class="highlight-card">
+          <h4>🏅 Certification</h4>
+          <p>Certified Training Professional (CTP) — The KPI Institute, 2025<br>
+          Graduate Student Online Teaching Certificate — Penn State, 2019</p>
+        </div>
+        <div class="highlight-card">
+          <h4>🌐 International Experience</h4>
+          <p>Collaborated with teams in Australia, the United States, and the Netherlands. Served global learners through international e-learning platforms.</p>
+        </div>
+        <div class="highlight-card">
+          <h4>🏛️ Government Work</h4>
+          <p>Supported the Indonesian Ministry of Education, Culture, Research & Technology on national training programs for 1,000+ educators.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Expertise</div>
+    <h2 class="section-title">Core Skills &amp; Competencies</h2>
+    <p class="section-intro">My skill set spans the full learning design lifecycle — from needs analysis and course design through delivery, quality assurance, and evaluation.</p>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-icon">📐</div>
+        <h3>Instructional Design</h3>
+        <ul>
+          <li>ADDIE & SAM Frameworks</li>
+          <li>Bloom's Taxonomy</li>
+          <li>Gagne's 9 Events</li>
+          <li>Competency-Based Learning</li>
+          <li>Gamified Assessments</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">✅</div>
+        <h3>Quality Assurance</h3>
+        <ul>
+          <li>QA Framework Development</li>
+          <li>LMS Testing (Kajabi, Lerero, Moodle)</li>
+          <li>Instructional Standards Review</li>
+          <li>Course Usability Testing</li>
+          <li>Style Guide Creation</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">📊</div>
+        <h3>Monitoring & Evaluation</h3>
+        <ul>
+          <li>Kirkpatrick Evaluation Model</li>
+          <li>Theory of Change</li>
+          <li>Logical Frameworks</li>
+          <li>Stakeholder Reporting</li>
+          <li>Program Impact Assessment</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🌐</div>
+        <h3>Language Education</h3>
+        <ul>
+          <li>IELTS Examination Rubrics</li>
+          <li>Cambridge Assessment Standards</li>
+          <li>Pearson Global Standards</li>
+          <li>Curriculum Development</li>
+          <li>Communication Skill Training</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">🤖</div>
+        <h3>Technology & Tools</h3>
+        <ul>
+          <li>AI-Driven Content Development</li>
+          <li>H5P Interactive Content</li>
+          <li>LMS Administration</li>
+          <li>E-Learning Authoring Tools</li>
+          <li>Asynchronous & Synchronous Design</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-icon">👥</div>
+        <h3>Leadership & Collaboration</h3>
+        <ul>
+          <li>Workshop Facilitation</li>
+          <li>Cross-functional Team Leadership</li>
+          <li>SME Collaboration</li>
+          <li>Government Stakeholder Engagement</li>
+          <li>Staff Upskilling & Mentoring</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Portfolio</div>
+    <h2 class="section-title">Selected Projects</h2>
+    <p class="section-intro">A curated collection of work across instructional design, quality assurance, curriculum design, and language education. Some projects are under NDA — those shown reflect my approach and impact.</p>
+    <div class="projects-grid">
+
+      <div class="project-card fade-in">
+        <div class="project-num">01</div>
+        <div class="project-content">
+          <h3>Transforming Complex Research into Engaging E-Learning</h3>
+          <p>Designed 50+ structured, learner-friendly e-learning courses for The KPI Institute, converting research reports and technical content for global audiences. Applied Bloom's Taxonomy and the ADDIE model to craft clear objectives, interactive exercises, and assessments across topics including personal resilience, productivity, well-being, and wealth. Collaborated with SMEs and international teams.</p>
+          <div class="project-tags">
+            <span class="tag">ADDIE</span>
+            <span class="tag">Bloom's Taxonomy</span>
+            <span class="tag">E-Learning</span>
+            <span class="tag">H5P</span>
+            <span class="tag">Global Audience</span>
+          </div>
+          <a href="#" class="project-link">View Courses →</a>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-num">02</div>
+        <div class="project-content">
+          <h3>Enhancing Learning Quality Through a Structured QA Framework</h3>
+          <p>As a Quality Assurance Specialist, reviewed 40+ e-learning modules for clarity, usability, and alignment with learning goals. Built 10+ QA checklists, delivered focused feedback to instructional designers, and tested course performance inside LMS platforms — improving overall course quality by 50%+ and cutting production timelines by 50%.</p>
+          <div class="project-tags">
+            <span class="tag">QA Frameworks</span>
+            <span class="tag">LMS Testing</span>
+            <span class="tag">Kajabi</span>
+            <span class="tag">Moodle</span>
+            <span class="tag">Lerero</span>
+          </div>
+          <a href="#" class="project-link">View QA Samples →</a>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-num">03</div>
+        <div class="project-content">
+          <h3>National Teacher Development Framework — Balai Guru Penggerak</h3>
+          <p>Contributed to a national teacher training program in Indonesia to improve competencies for 1,000+ educators nationwide. Created SOPs, training manuals, and program frameworks in collaboration with government stakeholders, aligning program objectives with national education goals. Presented frameworks to teacher training institutions to support adoption across regions.</p>
+          <div class="project-tags">
+            <span class="tag">Government</span>
+            <span class="tag">Curriculum Design</span>
+            <span class="tag">Kirkpatrick Model</span>
+            <span class="tag">National Scale</span>
+          </div>
+          <a href="#" class="project-link">View Project →</a>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-num">04</div>
+        <div class="project-content">
+          <h3>Indonesia–Netherlands TVET Pilot Project (2018–2019)</h3>
+          <p>Served as Monitoring and Evaluation Specialist for a vocational education revitalization project across multiple schools in Indonesia. Developed evaluation tools using Theory of Change and Logical Frameworks, conducted field visits, gathered data, and prepared structured reports shared with Wageningen University & Research and the Dutch Embassy. Achieved 100% project completion and 95% stakeholder satisfaction.</p>
+          <div class="project-tags">
+            <span class="tag">M&E</span>
+            <span class="tag">Theory of Change</span>
+            <span class="tag">Logical Frameworks</span>
+            <span class="tag">TVET</span>
+            <span class="tag">International</span>
+          </div>
+          <a href="#" class="project-link">View Project →</a>
+        </div>
+      </div>
+
+      <div class="project-card fade-in">
+        <div class="project-num">05</div>
+        <div class="project-content">
+          <h3>IELTS Preparation Program — UIN Syarif Hidayatullah Jakarta</h3>
+          <p>Delivered IELTS preparation training for 100+ university students and scholarship candidates at the Center of Language Development. The program strengthened academic English across all four skills: listening, reading, writing, and speaking. Designed lesson plans, guided practice tasks, and simulation tests — helping students improve scores by 0.5–1.0 band on average.</p>
+          <div class="project-tags">
+            <span class="tag">IELTS</span>
+            <span class="tag">Language Teaching</span>
+            <span class="tag">Academic English</span>
+            <span class="tag">Assessment Design</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">Professional Experience</h2>
+    <p class="section-intro">10+ years across education, instructional design, government consulting, and language training.</p>
+    <div class="timeline">
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">Nov 2024 – Present</div>
+        <div class="timeline-role">Senior Instructional Design QA Specialist</div>
+        <div class="timeline-org">The KPI Institute</div>
+        <ul class="timeline-points">
+          <li>Designed and reviewed 20+ async and B2B courses for global learners</li>
+          <li>Developed 10+ QA frameworks, improving course quality by 50%+</li>
+          <li>Optimized production timelines by 50% through structured reviews</li>
+          <li>Upskilled 10+ QA staff across instructional standards</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">Mar 2022 – Nov 2024</div>
+        <div class="timeline-role">Senior Instructional Design Specialist</div>
+        <div class="timeline-org">The KPI Institute</div>
+        <ul class="timeline-points">
+          <li>Produced 50+ courses for a global audience using ADDIE and Bloom's Taxonomy, increasing retention by 30%+</li>
+          <li>Developed gamified assessments that increased learner engagement by 20%</li>
+          <li>Created style guides for consistency across delivery methods</li>
+          <li>Led workshops for 20+ instructional designers and copywriters</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">Jun 2021 – Feb 2022</div>
+        <div class="timeline-role">Senior Education Program Consultant</div>
+        <div class="timeline-org">Ministry of Education, Culture, Research & Technology</div>
+        <ul class="timeline-points">
+          <li>Built national training frameworks for 1,000+ educators</li>
+          <li>Applied Kirkpatrick's model to evaluate training impact</li>
+          <li>Collaborated with government leaders on program implementation</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">May 2019 – Dec 2021</div>
+        <div class="timeline-role">Lead Monitoring & Evaluation Specialist</div>
+        <div class="timeline-org">IPB University & Ministry of Education</div>
+        <ul class="timeline-points">
+          <li>Designed M&E tools achieving 100% project completion across 3 years</li>
+          <li>Achieved 95% stakeholder satisfaction on M&E services</li>
+          <li>Led evaluations that improved project outcomes by 50% on average</li>
+          <li>Generated recommendations for the Ministry and the Dutch government</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item fade-in">
+        <div class="timeline-date">Jun 2013 – Aug 2017</div>
+        <div class="timeline-role">English Language Specialist & Trainer</div>
+        <div class="timeline-org">English Talk · Wall Street English · Permata Insani Islamic School</div>
+        <ul class="timeline-points">
+          <li>Designed curricula using Pearson and Cambridge standards</li>
+          <li>Facilitated interactive lessons to boost communication and proficiency</li>
+          <li>Adapted materials to diverse student learning needs</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="container">
+    <div class="section-label">Recognition</div>
+    <h2 class="section-title">Honors &amp; Awards</h2>
+    <div class="awards-grid">
+      <div class="award-card fade-in">
+        <div class="award-icon">🌍</div>
+        <h4>Fulbright Scholarship</h4>
+        <p>Competitive US government scholarship for international graduate study</p>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">🇮🇩</div>
+        <h4>LPDP Scholarship</h4>
+        <p>Indonesian government scholarship for academic excellence</p>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">🔬</div>
+        <h4>AERA Research Grant</h4>
+        <p>$250 grant from the American Educational Research Association</p>
+      </div>
+      <div class="award-card fade-in">
+        <div class="award-icon">🏆</div>
+        <h4>Children's Rights Activist of the Year</h4>
+        <p>Local Government Award for founding a community-based early childhood center</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Let's Connect</div>
+    <h2 class="section-title">Get in Touch</h2>
+    <p class="section-intro">Open to collaborations in instructional design, e-learning development, quality assurance, and educational program consulting.</p>
+    <div class="contact-links">
+      <a href="mailto:sitinuraenieny@gmail.com" class="contact-item">📧 sitinuraenieny@gmail.com</a>
+      <a href="tel:+6285601717217" class="contact-item">📱 +62 856 0171 7217</a>
+      <a href="https://www.linkedin.com/in/sitinuraeni777/" target="_blank" class="contact-item">💼 LinkedIn Profile</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Siti Nuraeni, M.Ed., CTP · Jakarta, Indonesia · Designed with care</p>
+</footer>
+
+<script>
+  // Scroll fade-in animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
